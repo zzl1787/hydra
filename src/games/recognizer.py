@@ -1,4 +1,4 @@
-from flask_restful import Resource
+from flask.ext.restful import Resource
 import random
 
 class Recognizer(Resource):
