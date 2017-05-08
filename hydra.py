@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_cors import CORS
-from flask.ext.restful import Api
+from flask_restful import Api
 
 from src.games.recognizer import Recognizer
 from src.user.user import User
