@@ -2,7 +2,7 @@ from flask import Flask
 from flask_cors import CORS
 from flask_restful import Api
 
-from src.games.recognizer import Recognizer
+from src.games.recognizer.recognizer import Recognizer
 from src.user.user import User
 
 app = Flask(__name__)
