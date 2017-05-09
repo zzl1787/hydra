@@ -5,9 +5,8 @@ import os
 from PIL import Image, ImageEnhance
 from pandas import DataFrame
 from pytesser import image_to_string
-import numpy as np
 
-from src.config import configs
+from config import configs
 from src.utils.distance import *
 
 
