@@ -1,0 +1,8 @@
+图像处理依赖安装：
+1.PIL: pip install pillow
+2.安装pytesser：http://blog.csdn.net/lanfan_11/article/details/45558573
+3.修改pytesser.py：import Image => from PIL import Image
+
+curl发请求:
+上传文件：curl -F "file=@1.png;filename=1.png" "http://10.65.100.51:3000/games/recognizer"
+get请求：curl -G http://10.65.100.51:3000/games/recognizer?file_path=1.png

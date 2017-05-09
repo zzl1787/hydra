@@ -1,4 +1,0 @@
-图像处理依赖安装：
-1.PIL: pip install pillow
-2.安装pytesser：http://blog.csdn.net/lanfan_11/article/details/45558573
-3.修改pytesser.py：import Image => from PIL import Image
