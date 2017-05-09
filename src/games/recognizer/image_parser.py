@@ -21,11 +21,11 @@ class AbstractParser():
 # 图片预处理装饰器
 def preHandle(func):
     @functools.wraps(func)
-    def decorator(file_path):
-        image = Image.open(file_path)
+    def decorator(image):
         image = image.resize((100, 100), Image.BOX)
         image = image.convert("L")
-        func(image)
+        ret = func(image)
+        return ret
 
     return decorator
 
@@ -51,6 +51,7 @@ def load_dataset():
 # 图片转矩阵，传入：图片对象，返回：矩阵
 def image_to_matrix(image):
     width, height = image.size
+    image = image.resize((100, 100), Image.BOX)
     image = image.convert("L")
     data = image.getdata(0)
     data = np.matrix(data, dtype='float') / 255.0
@@ -76,8 +77,7 @@ def image_to_vector(image):
 
 class PytesserParser(AbstractParser):
     # 直接识别图片
-    def parse(self, file_path):
-        image = Image.open(file_path)
+    def parse(self, image):
         image = image.resize((100, 100), Image.BOX)
         image = image.convert("L")
         enhancer = ImageEnhance.Contrast(image)
@@ -86,8 +86,7 @@ class PytesserParser(AbstractParser):
 
 
 class KnnParser(AbstractParser):
-    def parse(self, file_path):
-        image = Image.open(file_path)
+    def parse(self, image):
         vector = image_to_vector(image)
         dataframe = load_dataset()
         distances = {}
@@ -95,3 +94,8 @@ class KnnParser(AbstractParser):
             distances[index] = eucldist(vector, row)
         result = min(distances.items(), key=lambda x: x[1])[0]
         return result
+
+if __name__ == '__main__':
+    parser = KnnParser()
+    result = parser.parse(Image.open('w:\\1.png'))
+    print result
