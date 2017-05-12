@@ -14,15 +14,16 @@ from src.games.recognizer.image_parser import KnnParser
 class Recognizer(Resource):
     # 上传图片并识别
     def post(self):
-        file = request.files['file']
+        file = request.files['the_image']
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file_path = os.path.join(configs.get("upload_dir"), filename)
             file.save(file_path)
         else:
-            return json.dumps({"message": "illegal filename or empty file!"})
+            return {"message": "illegal filename or empty file!"}
         parser = KnnParser()
         result = parser.parse(Image.open(file_path))
+        print result
         return {'result': result}
 
 

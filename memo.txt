@@ -6,3 +6,6 @@
 curl发请求:
 上传文件：curl -F "file=@1.png;filename=1.png" "http://10.65.100.51:3000/games/recognizer"
 get请求：curl -G http://10.65.100.51:3000/games/recognizer?file_path=1.png
+
+安装activeTcl：
+http://www.tkdocs.com/tutorial/install.html

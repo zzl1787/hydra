@@ -22,7 +22,7 @@ class AbstractParser():
 def preHandle(func):
     @functools.wraps(func)
     def decorator(image):
-        image = image.resize((100, 100), Image.BOX)
+        image = image.resize((300, 370), Image.BOX)
         image = image.convert("L")
         ret = func(image)
         return ret
@@ -51,7 +51,7 @@ def load_dataset():
 # 图片转矩阵，传入：图片对象，返回：矩阵
 def image_to_matrix(image):
     width, height = image.size
-    image = image.resize((100, 100), Image.BOX)
+    image = image.resize((300, 370), Image.BOX)
     image = image.convert("L")
     data = image.getdata(0)
     data = np.matrix(data, dtype='float') / 255.0
@@ -68,7 +68,7 @@ def matrix_to_image(matrix):
 
 # 图片转向量
 def image_to_vector(image):
-    image = image.resize((100, 100), Image.BOX)
+    image = image.resize((300, 370), Image.BOX)
     image = image.convert("L")
     data = image.getdata(0)
     vector = np.array(data, dtype='float') / 255.0
@@ -78,7 +78,7 @@ def image_to_vector(image):
 class PytesserParser(AbstractParser):
     # 直接识别图片
     def parse(self, image):
-        image = image.resize((100, 100), Image.BOX)
+        image = image.resize((300, 370), Image.BOX)
         image = image.convert("L")
         enhancer = ImageEnhance.Contrast(image)
         image_enhancer = enhancer.enhance(4)
