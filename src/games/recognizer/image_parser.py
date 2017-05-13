@@ -26,7 +26,6 @@ def preHandle(func):
         image = image.convert("L")
         ret = func(image)
         return ret
-
     return decorator
 
 

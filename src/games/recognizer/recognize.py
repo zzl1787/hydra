@@ -23,7 +23,6 @@ class Recognizer(Resource):
             return {"message": "illegal filename or empty file!"}
         parser = KnnParser()
         result = parser.parse(Image.open(file_path))
-        print result
         return {'result': result}
 
 
